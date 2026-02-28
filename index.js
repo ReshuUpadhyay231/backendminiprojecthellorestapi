@@ -25,4 +25,16 @@ app.get('/users',(req,res)=>{     //user list
     res.json(users)
 })
 
-
+app.get('/users/:id',(req,res)=>{
+    const id=parseInt(req.params.id)
+    const users=[
+        {id: 1,name:'alice',age:22},
+        {id: 2,name:'bob',age:25},
+        {id: 3,name:'charlie',age:28}
+    ]
+    const user=users.find(u=>u.id==id)
+    if(!user){
+        return res.status(404).json({error:'user not found'})
+    }
+    res.json(user)
+})
