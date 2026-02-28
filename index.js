@@ -25,7 +25,7 @@ app.get('/users',(req,res)=>{     //user list
     res.json(users)
 })
 
-app.get('/users/:id',(req,res)=>{
+app.get('/users/:id',(req,res)=>{       // routr tp get user by id
     const id=parseInt(req.params.id)
     const users=[
         {id: 1,name:'alice',age:22},
@@ -37,4 +37,14 @@ app.get('/users/:id',(req,res)=>{
         return res.status(404).json({error:'user not found'})
     }
     res.json(user)
+})
+
+// route to -404 for unknown routes
+app.use((res,req)=>{
+    res.status(404).json({error:'route not find'})
+})
+
+// to start the server
+app.listen(PORT,()=>{
+    console.log(`server is running on http://localhost:${PORT}`)
 })
